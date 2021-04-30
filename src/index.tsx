@@ -1,9 +1,13 @@
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import RootStore from './redux/Store';
 import { Provider } from 'react-redux';
+
+import "./assets/plugins/nucleo/css/nucleo.css";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import './assets/css/argon-dashboard-react.css';
+
 
 ReactDOM.render(
   <Provider store={RootStore}>

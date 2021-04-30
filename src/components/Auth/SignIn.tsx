@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { SignInAction} from '../../redux/actions/Auth/SignInActions';
 import { UserType } from '../../redux/actions/Auth/SignInActionTypes';

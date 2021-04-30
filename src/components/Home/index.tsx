@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';  
+import { Container, Row, Col } from 'reactstrap'; 
 
 function Home() {
   return (
