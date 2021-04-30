@@ -11,7 +11,11 @@ const signInReducer = (state: SignInState = defaultState, action: SignInDispatch
     case SignInActionTypes.SIGNIN_START:
       return {
         loading: true,
-        authenticated: false
+        authenticated: false,
+        user: {
+          email: action.user.email,
+          password: action.user.password
+        }
       };
     case SignInActionTypes.SIGNIN_FAILED:
       return {

@@ -1,7 +1,5 @@
-type UserType = {
-  password: string,
-  isPosting: boolean
-}
+import { UserType } from '../../actions/Auth/SignInActionTypes';
+
 export default interface SignInState {
   loading: boolean,
   user?: UserType,
