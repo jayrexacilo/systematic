@@ -1,30 +1,32 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Container, Row, Col, Button, Card, CardBody, CardHeader, Form, FormGroup, FormFeedback, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
-import { useDispatch } from 'react-redux';
-import { SignInAction} from '../../redux/actions/Auth/SignInActions';
+//import { useDispatch } from 'react-redux';
+//import { SignInAction} from '../../redux/actions/Auth/SignInActions';
 import validator from 'validator';
 
 import githubLogo from '../../assets/img/icons/common/github.svg';
 import googleLogo from '../../assets/img/icons/common/google.svg';
 
-function SignIn() {
-  const dispatch = useDispatch();
-  const [ user, setUser ] = useState({email: '', password: ''});
-  const [ inputValidation, setInputValidation ] = useState({email: true, password: true});
+function SignUp() {
+  //const dispatch = useDispatch();
+  const [ user, setUser ] = useState({name: '', email: '', password: ''});
+  const [ inputValidation, setInputValidation ] = useState({name: true, email: true, password: true});
   const handleFormInput = (name: string, value: string) => {
     setInputValidation({
+      name: !validator.isEmpty(user.name),
       email: validator.isEmail(user.email) && !validator.isEmpty(user.email),
       password: validator.isLength(user.password, {min: 6, max: 16}) && !validator.isEmpty(user.password)
     });
     setUser({...user, [name]: value});
   };
-  const handleSignIn = () => {
+  const handleSignUp = () => {
     setInputValidation({
+      name: !validator.isEmpty(user.name),
       email: validator.isEmail(user.email) && !validator.isEmpty(user.email),
       password: validator.isLength(user.password, {min: 6, max: 16}) && !validator.isEmpty(user.password)
     });
-    dispatch(SignInAction({email: user.email, password: user.password}));
+    //dispatch(SignInAction({email: user.email, password: user.password}));
   };
 
   return (
@@ -34,9 +36,20 @@ function SignIn() {
           <Card className="bg-secondary shadow border-0">
             <CardHeader className="px-lg-5 py-lg-55">
               <div className="text-muted text-center mt-2 mb-3">
-                <small>Sign In with credentials</small>
+                <small>Sign Up with credentials</small>
               </div>
               <Form>
+                <FormGroup className={inputValidation.name ? '' : 'has-danger' }>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ni ni-circle-08" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input className={inputValidation.name ? '' : 'is-invalid' } placeholder="Name" type="text" name="name" onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
+                  </InputGroup>
+                  <FormFeedback className={inputValidation.name ? '' : 'd-block' }>Please enter name</FormFeedback>
+                </FormGroup>
                 <FormGroup className={inputValidation.email ? '' : 'has-danger' }>
                   <InputGroup>
                     <InputGroupAddon addonType="prepend">
@@ -62,19 +75,19 @@ function SignIn() {
                 <div className="custom-control custom-checkbox mb-3">
                   <input
                     className="custom-control-input"
-                    id="remember_me"
+                    id="privacy_policy"
                     type="checkbox"
                   />
-                  <label className="custom-control-label" htmlFor="remember_me"><span className="text-muted">Remember me</span></label>
+                  <label className="custom-control-label" htmlFor="privacy_policy"><span className="text-muted">I agree with the Privacy Policy</span></label>
                 </div>
                 <div className="text-center">
-                  <Button className="my-4 btn" color="primary" type="button" onClick={() => handleSignIn()}>Sign In</Button>
+                  <Button className="my-4 btn" color="primary" type="button" onClick={() => handleSignUp()}>Sign Up</Button>
                 </div>
               </Form>
             </CardHeader>
             <CardBody className="bg-transparent">
               <div className="text-center text-muted mb-4">
-                <small>Or sign in with</small>
+                <small>Or sign up with</small>
               </div>
               <div className="btn-wrapper text-center">
                 <Link className="btn-neutral btn-icon btn btn-default" to="#">
@@ -93,8 +106,7 @@ function SignIn() {
             </CardBody>
           </Card>
           <Row className="mt-3">
-            <Col><Link to="#" className="text-light"><small>Forgot password?</small></Link></Col>
-            <Col className="text-right"><Link to="/signup" className="text-light"><small>Create new account</small></Link></Col>
+            <Col className="text-right">Already have an account? Please <Link to="/signin" className="text-primary">Sign In</Link></Col>
           </Row>
         </Col>
       </Row>
@@ -102,4 +114,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignUp;
