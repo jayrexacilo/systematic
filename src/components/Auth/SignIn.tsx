@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { Container, Row, Col, Button, Card, CardBody, CardHeader, Form, FormGroup, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { Container, Row, Col, Button, Card, CardBody, CardHeader, Form, FormGroup, FormFeedback, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { useDispatch } from 'react-redux';
 import { SignInAction} from '../../redux/actions/Auth/SignInActions';
+import validator from 'validator';
 
 import githubLogo from '../../assets/img/icons/common/github.svg';
 import googleLogo from '../../assets/img/icons/common/google.svg';
@@ -10,8 +11,21 @@ import googleLogo from '../../assets/img/icons/common/google.svg';
 function SignIn() {
   const dispatch = useDispatch();
   const [ user, setUser ] = useState({email: '', password: ''});
-  const handleFormInput = (name: string, value: string) => setUser({...user, [name]: value});
-  const handleSignIn = () => dispatch(SignInAction({email: user.email, password: user.password}));
+  const [ inputValidation, setInputValidation ] = useState({email: true, password: true});
+  const handleFormInput = (name: string, value: string) => {
+    setInputValidation({
+      email: validator.isEmail(user.email) && !validator.isEmpty(user.email),
+      password: validator.isLength(user.password, {min: 6, max: 16}) && !validator.isEmpty(user.password)
+    });
+    setUser({...user, [name]: value});
+  };
+  const handleSignIn = () => {
+    setInputValidation({
+      email: validator.isEmail(user.email) && !validator.isEmpty(user.email),
+      password: validator.isLength(user.password, {min: 6, max: 16}) && !validator.isEmpty(user.password)
+    });
+    dispatch(SignInAction({email: user.email, password: user.password}));
+  };
 
   return (
     <Container>
@@ -23,37 +37,39 @@ function SignIn() {
                 <small>Sign In with credentials</small>
               </div>
               <Form>
-                <FormGroup>
-                <InputGroup className="mb-4">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-email-83" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input placeholder="Email" type="email" name="email" onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
-                </InputGroup>
-              </FormGroup>
-                <FormGroup>
-                <InputGroup className="mb-4">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-lock-circle-open" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input placeholder="Password" type="password" name="password" onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
-                </InputGroup>
-              </FormGroup>
-              <div className="custom-control custom-checkbox mb-3">
-                <input
-                  className="custom-control-input"
-                  id="remember_me"
-                  type="checkbox"
-                />
-                <label className="custom-control-label" htmlFor="remember_me"><span className="text-muted">Remember me</span></label>
-              </div>
-              <div className="text-center">
-                <Button className="my-4 btn" color="primary" type="button" onClick={() => handleSignIn()}>Sign In</Button>
-              </div>
+                <FormGroup className={inputValidation.email ? '' : 'has-danger' }>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ni ni-email-83" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input className={inputValidation.email ? '' : 'is-invalid' } placeholder="Email" type="email" name="email" onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
+                  </InputGroup>
+                  <FormFeedback className={inputValidation.email ? '' : 'd-block' }>Please enter a valid email</FormFeedback>
+                </FormGroup>
+                <FormGroup className={inputValidation.password ? '' : 'has-danger' }>
+                  <InputGroup className="mb-4">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="ni ni-lock-circle-open" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input className={inputValidation.password ? '' : 'is-invalid' } placeholder="Password" type="password" name="password" onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
+                  </InputGroup>
+                  <FormFeedback className={inputValidation.password ? '' : 'd-block' }>Password should be min 6 and max 16</FormFeedback>
+                </FormGroup>
+                <div className="custom-control custom-checkbox mb-3">
+                  <input
+                    className="custom-control-input"
+                    id="remember_me"
+                    type="checkbox"
+                  />
+                  <label className="custom-control-label" htmlFor="remember_me"><span className="text-muted">Remember me</span></label>
+                </div>
+                <div className="text-center">
+                  <Button className="my-4 btn" color="primary" type="button" onClick={() => handleSignIn()}>Sign In</Button>
+                </div>
               </Form>
             </CardHeader>
             <CardBody className="bg-transparent">
