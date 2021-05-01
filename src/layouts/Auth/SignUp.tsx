@@ -42,9 +42,9 @@ function SignUp() {
                 <small>Sign Up with credentials</small>
               </div>
               <Form>
-                <FormInput inputData={{inputValidation, handleFormInput, inputName: 'name', inputType: 'text', placeholder: 'Name', errFeedback: 'Please enter name', icon: 'ni-circle-08'}}/>
-                <FormInput inputData={{inputValidation, handleFormInput, inputName: 'email', inputType: 'email', placeholder: 'Email', errFeedback: 'Please enter valid email', icon: 'ni-email-83'}}/>
-                <FormInput inputData={{inputValidation, handleFormInput, inputName: 'password', inputType: 'password', placeholder: 'Password', errFeedback: 'Password should be min 6 and max 16', icon: 'ni-lock-circle-open'}}/>
+                <FormInput inputData={{isValid: inputValidation.name, handleFormInput, inputName: 'name', inputType: 'text', placeholder: 'Name', errFeedback: 'Please enter name', icon: 'ni-circle-08'}}/>
+                <FormInput inputData={{isValid: inputValidation.email, handleFormInput, inputName: 'email', inputType: 'email', placeholder: 'Email', errFeedback: 'Please enter valid email', icon: 'ni-email-83'}}/>
+                <FormInput inputData={{isValid: inputValidation.password, handleFormInput, inputName: 'password', inputType: 'password', placeholder: 'Password', errFeedback: 'Password should be min 6 and max 16', icon: 'ni-lock-circle-open'}}/>
                 <FormCheckbox idName="privacy_policy" label="I agree with the Privacy Policy" />
                 <div className="text-center">
                   <Button className="my-4 btn" color="primary" type="button" onClick={() => handleSignUp()}>Sign Up</Button>

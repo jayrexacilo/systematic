@@ -3,10 +3,7 @@ import { FormGroup, FormFeedback, Input, InputGroup, InputGroupAddon, InputGroup
 
 interface IFormInputProps {
   inputData: {
-    inputValidation: {
-      email: boolean,
-      password: boolean
-    },
+    isValid: boolean,
     handleFormInput: (name: string, value: string) => void,
     inputName: string,
     placeholder: string,
@@ -17,19 +14,19 @@ interface IFormInputProps {
 }
 
 function FormInput(props: IFormInputProps) {
-  const { inputValidation, handleFormInput, inputName, placeholder, inputType, errFeedback, icon } = props.inputData;
+  const { isValid, handleFormInput, inputName, placeholder, inputType, errFeedback, icon } = props.inputData;
 
   return (
-    <FormGroup className={inputValidation.email ? '' : 'has-danger' }>
+    <FormGroup className={isValid ? '' : 'has-danger' }>
       <InputGroup>
         <InputGroupAddon addonType="prepend">
           <InputGroupText>
             <i className={`ni ${icon}`} />
           </InputGroupText>
         </InputGroupAddon>
-        <Input className={inputValidation.email ? '' : 'is-invalid' } placeholder={placeholder} type={inputType} name={inputName} onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
+        <Input className={isValid ? '' : 'is-invalid' } placeholder={placeholder} type={inputType} name={inputName} onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
       </InputGroup>
-      <FormFeedback className={inputValidation.email ? '' : 'd-block' }>{errFeedback}</FormFeedback>
+      <FormFeedback className={isValid ? '' : 'd-block' }>{errFeedback}</FormFeedback>
     </FormGroup>
   );
 }
