@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { Container, Row, Col, Button, Card, CardBody, CardHeader, Form, FormGroup, FormFeedback, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { Container, Row, Col, Button, Card, CardBody, CardHeader, Form } from 'reactstrap';
 //import { useDispatch } from 'react-redux';
 //import { SignInAction} from '../../redux/actions/Auth/SignInActions';
 import validator from 'validator';
+
+import FormInput from '../../components/Auth/common/FormInput'; 
+import FormCheckbox from '../../components/Auth/common/FormCheckbox'; 
 
 import githubLogo from '../../assets/img/icons/common/github.svg';
 import googleLogo from '../../assets/img/icons/common/google.svg';
@@ -39,47 +42,10 @@ function SignUp() {
                 <small>Sign Up with credentials</small>
               </div>
               <Form>
-                <FormGroup className={inputValidation.name ? '' : 'has-danger' }>
-                  <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                        <i className="ni ni-circle-08" />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input className={inputValidation.name ? '' : 'is-invalid' } placeholder="Name" type="text" name="name" onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
-                  </InputGroup>
-                  <FormFeedback className={inputValidation.name ? '' : 'd-block' }>Please enter name</FormFeedback>
-                </FormGroup>
-                <FormGroup className={inputValidation.email ? '' : 'has-danger' }>
-                  <InputGroup>
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                        <i className="ni ni-email-83" />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input className={inputValidation.email ? '' : 'is-invalid' } placeholder="Email" type="email" name="email" onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
-                  </InputGroup>
-                  <FormFeedback className={inputValidation.email ? '' : 'd-block' }>Please enter a valid email</FormFeedback>
-                </FormGroup>
-                <FormGroup className={inputValidation.password ? '' : 'has-danger' }>
-                  <InputGroup className="mb-4">
-                    <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                        <i className="ni ni-lock-circle-open" />
-                      </InputGroupText>
-                    </InputGroupAddon>
-                    <Input className={inputValidation.password ? '' : 'is-invalid' } placeholder="Password" type="password" name="password" onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
-                  </InputGroup>
-                  <FormFeedback className={inputValidation.password ? '' : 'd-block' }>Password should be min 6 and max 16</FormFeedback>
-                </FormGroup>
-                <div className="custom-control custom-checkbox mb-3">
-                  <input
-                    className="custom-control-input"
-                    id="privacy_policy"
-                    type="checkbox"
-                  />
-                  <label className="custom-control-label" htmlFor="privacy_policy"><span className="text-muted">I agree with the Privacy Policy</span></label>
-                </div>
+                <FormInput inputData={{inputValidation, handleFormInput, inputName: 'name', inputType: 'text', placeholder: 'Name', errFeedback: 'Please enter name', icon: 'ni-circle-08'}}/>
+                <FormInput inputData={{inputValidation, handleFormInput, inputName: 'email', inputType: 'email', placeholder: 'Email', errFeedback: 'Please enter valid email', icon: 'ni-email-83'}}/>
+                <FormInput inputData={{inputValidation, handleFormInput, inputName: 'password', inputType: 'password', placeholder: 'Password', errFeedback: 'Password should be min 6 and max 16', icon: 'ni-lock-circle-open'}}/>
+                <FormCheckbox idName="privacy_policy" label="I agree with the Privacy Policy" />
                 <div className="text-center">
                   <Button className="my-4 btn" color="primary" type="button" onClick={() => handleSignUp()}>Sign Up</Button>
                 </div>
