@@ -1,5 +1,5 @@
-import { ComponentProps } from 'react';
-import { FormGroup, FormFeedback, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import {  ComponentProps } from 'react';
+import {  FormGroup, FormFeedback, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 
 interface IFormInputProps {
   inputData: {
@@ -24,7 +24,7 @@ function FormInput(props: IFormInputProps) {
             <i className={`ni ${icon}`} />
           </InputGroupText>
         </InputGroupAddon>
-        <Input className={isValid ? '' : 'is-invalid' } placeholder={placeholder} type={inputType} name={inputName} onChange={(e) => handleFormInput(e.target.name, e.target.value)}/>
+        <Input className={isValid ? '' : 'is-invalid' } placeholder={placeholder} type={inputType} name={inputName} onChange={(e) => handleFormInput(e.target.name, e.target.value)} onBlur={e => handleFormInput(e.target.name, e.target.value)}/>
       </InputGroup>
       <FormFeedback className={isValid ? '' : 'd-block' }>{errFeedback}</FormFeedback>
     </FormGroup>
