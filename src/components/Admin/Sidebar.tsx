@@ -12,12 +12,6 @@ function Sidebar () {
         <Nav navbar>
           <NavItem>
             <NavLink href="#dashboard" activeClassName="active" >
-              <i className="ni ni-tv-2 text-primary" />
-              Dashboard
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#dashboard" activeClassName="active" >
               <i className="fas fa-tasks text-success"></i>
               Today
             </NavLink>

@@ -1,6 +1,6 @@
 import Sidebar from '../../components/Admin/Sidebar';
 import TopNavbar from '../../components/Admin/TopNavbar';
-import Header from '../../components/Admin/Header';
+import Today from './Today';
 
 function Admin () {
 
@@ -9,7 +9,7 @@ function Admin () {
       <Sidebar />
       <div className="main-content">
         <TopNavbar />
-        <Header />
+        <Today />
       </div>
     </>
   );
