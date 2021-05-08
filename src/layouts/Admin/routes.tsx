@@ -1,5 +1,5 @@
 import Today from './Today';
-import Calendar from './Calendar';
+import CalendarC from './Calendar';
 
 const routes = [
   {
@@ -13,7 +13,7 @@ const routes = [
     path: "/calendar",
     name: "Calendar",
     icon: "fas fa-calendar-alt text-orange",
-    component: Calendar,
+    component: CalendarC,
     layout: "/admin"
   }
 ];
