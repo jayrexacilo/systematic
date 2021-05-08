@@ -5,7 +5,6 @@ import moment from 'moment'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-import Header from '../../components/Admin/Header';
 import events from './events';
 
 type DescribeFn = {

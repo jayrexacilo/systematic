@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import Sidebar from '../../components/Admin/Sidebar';
 import TopNavbar from '../../components/Admin/TopNavbar';
-import Today from './Today';
 
 import routes from './routes';
 
