@@ -4,9 +4,11 @@ import reportWebVitals from './reportWebVitals';
 import RootStore from './redux/Store';
 import { Provider } from 'react-redux';
 
+import './index.css';
 import "./assets/plugins/nucleo/css/nucleo.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './assets/css/argon-dashboard-react.css';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 
 ReactDOM.render(
