@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -54,19 +55,23 @@ function Sidebar () {
           <Container fluid>
             <Nav navbar>
               <NavItem>
-                <NavLink href="#dashboard" activeClassName="active" >
-                  <i className="fas fa-tasks text-success"></i>
-                  Today
-                </NavLink>
+                <Link to="/admin/today">
+                  <NavLink activeClassName="active" >
+                    <i className="fas fa-tasks text-success"></i>
+                    Today
+                  </NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href="#dashboard" activeClassName="active" >
-                  <i className="fas fa-calendar-alt text-orange"></i>
-                  Calendar
-                </NavLink>
+                <Link to="/admin/calendar">
+                  <NavLink activeClassName="active" >
+                    <i className="fas fa-calendar-alt text-orange"></i>
+                    Calendar
+                  </NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink href="#dashboard" activeClassName="active" >
+                <NavLink activeClassName="active" >
                   <i className="fas fa-check-double text-primary"></i>
                   Notes
                 </NavLink>

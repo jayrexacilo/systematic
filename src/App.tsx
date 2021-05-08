@@ -4,6 +4,7 @@ import Home from './components/Home';
 import SignIn from './layouts/Auth/SignIn';
 import SignUp from './layouts/Auth/SignUp';
 import Admin from './layouts/Admin/MainLayout';
+import Calendar from './layouts/Admin/Calendar';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/signin"><SignIn/></Route>
         <Route path="/signup"><SignUp/></Route>
         <Route path="/admin"><Admin/></Route>
+        <Route exact path="/admin/calendar"><Calendar/></Route>
       </Switch>
     </Router>
   );
