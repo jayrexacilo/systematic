@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownItem,
@@ -10,6 +10,9 @@ import {
 import jess from '../../assets/img/theme/team-4-800x800.jpg';
 
 function UserNavbar () {
+  const history = useHistory();
+  const handleLogout = () => history.push('signin');
+
   return (
     <>
       {/**<UncontrolledDropdown nav>
@@ -64,7 +67,7 @@ function UserNavbar () {
             <span>Support</span>
           </DropdownItem>
           <DropdownItem divider />
-          <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+          <DropdownItem onClick={handleLogout}>
             <i className="ni ni-user-run" />
             <span>Logout</span>
           </DropdownItem>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {    Button, Form } from 'reactstrap';
 import { useDispatch } from 'react-redux';
 import { SignInAction } from '../../../redux/actions/Auth/SignInActions';
@@ -18,12 +19,16 @@ function SignInForm() {
     });
     setUser({...user, [name]: value});
   };
+  const history = useHistory();
   const handleSignIn = () => {
     setInputValidation({
       email: validator.isEmail(user.email) && !validator.isEmpty(user.email),
       password: validator.isLength(user.password, {min: 6, max: 16}) && !validator.isEmpty(user.password)
     });
     dispatch(SignInAction({email: user.email, password: user.password}));
+    if(inputValidation.email && inputValidation.password) {
+      history.push('/admin/today');
+    }
   };
 
 
