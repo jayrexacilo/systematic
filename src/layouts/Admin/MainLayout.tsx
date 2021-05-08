@@ -38,7 +38,7 @@ function Admin () {
         <TopNavbar />
         <Switch>
           {getRoutes(routes)}
-          <Redirect from="*" to="/admin/index" />
+          <Redirect from="*" to="/admin/today" />
         </Switch>
       </div>
     </>
