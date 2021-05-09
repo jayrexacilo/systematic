@@ -11,7 +11,7 @@ import jess from '../../assets/img/theme/team-4-800x800.jpg';
 
 function UserNavbar () {
   const history = useHistory();
-  const handleLogout = () => history.push('signin');
+  const handleLogout = () => history.push('/signin');
 
   return (
     <>
